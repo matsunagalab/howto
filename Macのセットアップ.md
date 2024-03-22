@@ -28,7 +28,7 @@ Macを設定する途中で、アカウント名の入力が求められます�
 
 ## Macの基本的な使い方を知る
 
-[ここ](https://help.apple.com/macos/big-sur/mac-basics/#apps)を一通り読んでMacの基本的な概念を学んでください。
+[ここ](https://help.apple.com/macos/sonoma/mac-basics/#apps)を一通り読んでMacの基本的な概念を学んでください。
 
 また、MacOSの細かな環境設定については[Qiitaの記事](https://qiita.com/jonghyo/items/733e0aeb5d6cd58e4855)などが参考になります。
 
