@@ -14,7 +14,7 @@
 
 - Homebrewをインストールしている
 
-- 研究室メンバーで連絡を取り合えるようにSlackを使えるようになる
+- 研究室メンバーで連絡を取り合えるようにTeamsを使えるようになる
 
 - 資料作成のためにMicrosoft Office(ワードやパワーポイント)を使えるようになる
 
@@ -46,9 +46,9 @@ Homebrewでは`brew`というコマンドの後に、命令を書いてアプリ
 $ brew help
 ```
 
-Slackをインストールします。別途ワークスペース情報を共有するので大学のMicrosoft365メールアドレスでログインしてください。
+Teamsをインストールします。別途ワークスペース情報を共有するので大学のMicrosoft365メールアドレスでログインしてください。
 ```
-$ brew install --cask slack
+brew install --cask microsoft-teams
 ```
 
 Microsoft Officeをインストールします。インストール後、起動時にアカウントが求められますので、大学のMicrosoft365アカウントを使ってください。
