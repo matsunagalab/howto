@@ -50,12 +50,12 @@ Homebrewでは`brew`というコマンドの後に、命令を書いてアプリ
 $ brew help
 ```
 
-Teamsをインストールします。別途ワークスペース情報を共有するので大学のMicrosoft365メールアドレスでログインしてください。
+Teamsをインストールします。インストールできたら大学のMicrosoft365アカウントでログインしてください。
 ```
 $ brew install --cask microsoft-teams
 ```
 
-Microsoft Officeをインストールします。インストール後、起動時にアカウントが求められますので、大学のMicrosoft365アカウントを使ってください。
+Microsoft Officeをインストールします。起動時にアカウントが求められますので、大学のMicrosoft365アカウントでログインしてください。
 ```
 $ brew install --cask microsoft-office
 ```
