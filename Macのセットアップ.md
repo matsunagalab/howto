@@ -52,7 +52,7 @@ $ brew help
 
 Teamsをインストールします。別途ワークスペース情報を共有するので大学のMicrosoft365メールアドレスでログインしてください。
 ```
-brew install --cask microsoft-teams
+$ brew install --cask microsoft-teams
 ```
 
 Microsoft Officeをインストールします。インストール後、起動時にアカウントが求められますので、大学のMicrosoft365アカウントを使ってください。
