@@ -69,3 +69,5 @@ $ brew install --cask zoom
 
 まず、MacBook Proへのログインパスワードが簡単すぎる場合は、[ここ](https://support.apple.com/ja-jp/HT202860)に従って予測されにくいものへ変更してください。その後、[ここ](https://support.apple.com/ja-jp/HT204837)に従って、MacOSの機能である「起動ディスクの暗号化(FireVault)」をオンにしてください。これを有効にすれば、例えばMacBook Proが盗難にあってもデータが漏洩することを防ぐことができます。
 
+iPhoneを使っている場合は、パスキーを入れるとよりセキュリティが強化されます。 https://support.apple.com/ja-jp/guide/iphone/iphf538ea8d0/ios
+
