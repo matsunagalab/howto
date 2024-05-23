@@ -1,10 +1,14 @@
-# 🤯 howto
+# howto
 
-論文紹介の仕方や卒論の書き方等の様々な解説
+研究室メンバ向けの様々なハウツー
 
-- [(卒研生向け)論文紹介の仕方](論文紹介の仕方.pdf)
+- [Macのセットアップ](Macのセットアップ.md)
+- [Macの使い方](Macの使い方.md)  ([20230521に行ったセミナー動画](https://suitc.sharepoint.com/:v:/r/sites/GR_matsunagalab/Shared%20Documents/General/Recordings/コンピュータ演習1-20230531_150621-Meeting%20Recording.mp4?csf=1&web=1&e=ZZayvV))
+- [研究室サーバの使い方](研究室サーバの使い方.md)
+- [管理者向け 研究室サーバの管理](研究室サーバの管理.md)
+- [卒研生向け 論文紹介の仕方](論文紹介の仕方.pdf)
+- [卒研生向け 卒論の書き方](卒論の書き方.pdf)
 - WIP Git&GitHub入門
 - WIP 研究のワークフロー
 - WIP 進捗報告の仕方
-- [卒論の書き方](卒論の書き方.pdf)
 
