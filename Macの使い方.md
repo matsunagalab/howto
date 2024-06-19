@@ -1,8 +1,25 @@
+# 当日までの準備
+
+## vimの使い方を勉強しておく
+
+設定ファイルなどを作成、編集できるようになっておくため。具体的には、以下の教材の#01〜#08までを視聴しながら演習をこなしておく。
+
+https://dotinstall.com/lessons/basic_vim
+
+## GitHub education申請を済ませておく
+
+GitHub copilotを使えるようにするため。以下を参考に学生申請をしておく(無料)。
+
+https://qiita.com/SNQ-2001/items/796dc5e794ac3f57a945
+
+## ChatGPT(OpenAI)のアカウント作成しておく
+
+
 # Macの基本的な使い方
 
 ## Macの基本
 
-https://help.apple.com/macos/big-sur/mac-basics/#apps
+https://help.apple.com/macos/big-sur/mac-basics/#appss
 
 ## Windowsとの違い
 
@@ -52,6 +69,10 @@ https://help.apple.com/macos/big-sur/mac-basics/#apps
 ---
 
 # コマンドの初歩
+
+以下でコマンドの解説を行っていきますが、自分で理解が不十分だなもっと練習したいなと思った場合は事後学習として以下の教材を受講してください。
+
+https://prog-8.com/lessons/commandline/study/1
 
 ## ターミナルの設定
 
@@ -131,7 +152,7 @@ https://help.apple.com/macos/big-sur/mac-basics/#apps
 
 ## ターミナル上でテキストファイルを編集
 
-- ターミナル上で使うエディタとしては vim がお手軽で便利なので、以下を閲覧して基本だけでも使えるようになってください。 https://dotinstall.com/lessons/basic_vim
+- ターミナル上でぱぱっと使うエディタとしては vim がお手軽で便利。dotファイルなどはvimで編集。
 
 # 課題
 
@@ -139,7 +160,13 @@ https://help.apple.com/macos/big-sur/mac-basics/#apps
 
 ```bash
 # prompt
-PROMPT='%m:%c %n$ '
+autoload colors
+colors
+PROMPT="%{$fg[magenta]%}%n@%m%(!.#.$)%{$reset_color%}:%c$ " # 左側に表示
+PROMPT2="%{$fg[green]%}%_> %{$reset_color%}" # 2行以上のコマンド
+SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}" # コマンド候補提示
+# RPROMPT="%{$fg[cyan]%}[%~]%{${reset_color}%}" # 右側に表示
+RPROMPT=""
 
 # zsh-completions(補完機能)の設定
 if [ -e /usr/local/share/zsh-completions ]; then
@@ -156,8 +183,8 @@ alias gls="gls --color"
 zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 
 # コマンド履歴
-HISTSIZE=6000000
-SAVEHIST=6000000
+HISTSIZE=1000000
+SAVEHIST=1000000
 setopt share_history
 
 # コマンド履歴検索
@@ -196,49 +223,24 @@ export EDITOR=vim
 
 3. シェルの機能であるパイプとリダイレクションについてネットで調べてください。パイプを使って面白いワンライナーを作ってみてください。
 
-# 今後のための環境構築
+# Anacondaのインストール
 
-## Jupyter Labのインストール
+https://www.anaconda.com/download/success
 
-Jupyterとは？Jupyter Labとは？
+- インストール手順の説明
+- インストール場所の確認
+- 仮想環境の説明
+- condaコマンドの簡単な説明
 
-pythonとjuliaをbrewでインストール
-
-```bash
-$ brew install python3
-$ brew install julia
-```
-
-juliaで必要なパッケージなどをインストール
+# VSCodeのインストールとJupyter
 
 ```bash
-$ julia
-julia> 
-# enter the package mode by pressing ]
-pkg> add IJulia, Flux, Plots, PyPlot, Statistics, BSON, Revise, HTTP
-pkg> add https://github.com/matsunagalab/MDToolbox.jl.git
-# return to the REPL mode by pressing BACKSPACE or DELETE
-julia> using IJulia
-julia> exit()
+$ brew install --cask visual-studio-code
 ```
 
-Jupyter Labのインストール
-
-```bash
-$ brew install jupyterlab
-```
-
-Jupyter Labの起動
-
-```bash
-$ jupyter-lab
-```
-
-## コンパイラ関連のインストール
-
-gccのインストール
-
-```bash
-$ brew install gcc@11
-```
-
+- 画面レイアウトの説明
+- フォルダやファイルの開き方
+- キーボードショートカットの説明 (Cmd-Shift-p, Cmd-f, Cmd-Shift-f, Cmd-b, Opt-Shift-Down)
+- Extensionsのインストール (Python, Jupyter, Copilot)
+- VSCodeからのJupyterの使い方
+- Copilotの使い方
