@@ -92,6 +92,7 @@ https://prog-8.com/lessons/commandline/study/1
 
 ## ショートカットキー
 
+- Emacs keybindings [Emacsのキーバインド覚書](https://www.aise.ics.saitama-u.ac.jp/~gotoh/EmacsKeybind.html)
 - 一文字先 `Ctrl-f`
 - 一文字前 `Ctrl-f`
 - カーソル上の文字を削除 `Ctrl-d`
