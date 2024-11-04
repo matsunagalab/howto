@@ -1,8 +1,21 @@
 # MDシミュレーションのtips
+- 作成: 本間さくら s.homma.858@ms.saitama-u.ac.jp  
+- 編集: 〇〇 (内容を追加・編集したら名前を書いてください)  
+- 最終更新日: 2024年11月4日 
+---
 MDシミュレーション関連で、役に立ちそうなことや注意すべき点をまとめます (教えてくださった先生、先輩方に感謝申し上げます)。
 
+### 内容
 - [MDシミュレーションのtips](#mdシミュレーションのtips)
+    - [内容](#内容)
   - [シミュレーションエンジンの種類](#シミュレーションエンジンの種類)
+  - [力場の種類](#力場の種類)
+      - [全原子](#全原子)
+      - [粗視化](#粗視化)
+  - [初期構造の作成](#初期構造の作成)
+    - [水素原子・末端キャップの補完](#水素原子末端キャップの補完)
+    - [複数分子のパッキング](#複数分子のパッキング)
+    - [溶媒の追加](#溶媒の追加)
   - [トラジェクトリの可視化](#トラジェクトリの可視化)
     - [溶媒の除去](#溶媒の除去)
     - [フレームの抜き出し](#フレームの抜き出し)
@@ -19,21 +32,56 @@ MDシミュレーション関連で、役に立ちそうなことや注意すべ
 
 
 ## シミュレーションエンジンの種類
-- OpenMM (おすすめ)
-- GENESIS
+計算速度や利用できる計算資源、使いやすさなどを考慮して、好きなものを選ぶ
+- [OpenMM (おすすめ)](https://openmm.org/)
+  - pythonで書ける
+  - 機械学習との相性が良い
+- [GENESIS](https://www.r-ccs.riken.jp/labs/cbrt/)
+  - 理研が作っているMDソフトウェアで、スパコンなどの大規模・並列計算に適している
+  - 使い方はやや難しいが、わからなかったら先生に訊ける
 - LAMMPS
+- Gromacs
+- NAMD
+
+## 力場の種類
+研究対象の分子の特性に適した力場を使う。ここでは、研究室で使っている代表的な力場を挙げる。
+#### 全原子
+- Amber
+- Charmm
+#### 粗視化
+- Go model
+- HPS
+- GB99dms
+
+## 初期構造の作成
+
+### 水素原子・末端キャップの補完
+- PDBから持ってきた構造をそのまま使おうとすると、水素原子が抜けていることがある
+- タンパク質全長ではなく一部分を抜き出すと、N末端・C末端に本来存在しないはずの電荷が存在することになってしまう。これを防ぐため、ACEやNMEといった分子を使って末端をキャップすることがよく行われている。
+- [fixpdb.py](https://github.com/matsunagalab/tau/blob/main/GB99dms_freetau/structures/fixpdb.py)を実行することで、水素原子を付加したり、キャップを追加したりできる。
+
+### 複数分子のパッキング
+- [Packmol](https://m3g.github.io/packmol/)
+  - 複数の分子をいい感じにボックスに詰めてくれる
+
+### 溶媒の追加
+- [CHARMM-GUI](https://charmm-gui.org/?doc=input)
+  - 初期構造のセットアップツールが揃ったwebサービス
+  - 溶媒の追加以外にも、力場の変換やPDBファイルの編集など色々できる
+- VMD
+  - VMDを用いたセットアップは、[GENESISのチュートリアル](https://www.r-ccs.riken.jp/labs/cbrt/tutorials2022/tutorial-3-2/#1_Setup)が参考になる
 
 ## トラジェクトリの可視化
 代表的なツールとしては、以下のものが挙げられる。詳しくは、[tutorial_vizリポジトリ](https://github.com/matsunagalab/tutorial_viz)を参照。
-- PyMOL
+- [PyMOL](https://www.pymol.org/)
   - 画像がきれい＆操作が簡単
-- vmd
+- [VMD](https://www.ks.uiuc.edu/Research/vmd/)
   - 大容量データも軽々動く
-- blender (+ MolecularNodes)
+- [blender](https://www.blender.jp/) (+ [MolecularNodes](https://bradyajohnston.github.io/MolecularNodes/))
   - 論文の図を描くときに使う
-- nglview (python)
+- [nglview](https://github.com/nglviewer/nglview) (python)
   - notebookで可視化したいときに使う
-- py3dmol (python)
+- [py3dmol](https://3dmol.org/) (python)
   - notebookで可視化したいときに使う
 
 大容量データだと可視化に時間がかかるので、mdconvert (mdtraj付属のコマンド)を用いて溶媒を除去したり、フレームを抜き出したりする。
@@ -42,13 +90,13 @@ MDシミュレーション関連で、役に立ちそうなことや注意すべ
 1. タンパク質だけのPDBを作成 (元のPDBを編集してタンパク質部分だけ残す)
 2. mdconvertの`-a`オプションを使って、dcdからタンパク質だけをとりだしたdcdを作る (そのために原子番号のインデックスファイルが必要。インデックスはゼロベース)
 3. 原子番号のインデックスファイルは以下のようにして作れます。インデックスの上限の値は適当に変えること。
-```
-for i in $(seq 0 2635); do echo -n "${i} " >>./prot.index; done
-```
+    ```
+    for i in $(seq 0 2635); do echo -n "${i} " >>./prot.index; done
+    ```
 4. mdconvertは以下の通り
-```
-mdconvert -a prot.index run.dcd -o run_prot.dcd
-```
+    ```
+    mdconvert -a prot.index run.dcd -o run_prot.dcd
+    ```
 
 その他の使い方は、公式HP参考のこと。
 - 参考: [mdconvert](https://mdtraj.org/1.9.4/mdconvert.html)
@@ -63,44 +111,47 @@ mdconvert run.dcd -o run_stride10.dcd -s 10
 ### 方法1: X11 Forwarding
 - 以下の記事を参考にX11 Forwardingの設定を行い、vmdで可視化する。
 - 楽だが、画質がやや落ちるのと動作が重い
-```
-(Mac)$ ssh -XY crab
-(crab)$ vmd /path/to/data
-```
+    ```
+    (Mac)$ ssh -XY crab
+    (crab)$ vmd /path/to/data
+    ```
 - 参考: [Qiita X11 ForwardingしてMacにGUI表示する](https://qiita.com/loftkun/items/37340745f211ea5d7ece)
 
 ### 方法2: sshfsでファイルシステムをマウントする (おすすめ)
+- 以下の記事を参考に、sshfsコマンドをインストールしておく
 - sshfsで、研究室サーバのファイルをローカルのディレクトリにマウントする
 - ファイル転送に時間はかかるが、いちいちコピーしなくてよいので楽。
 - Macに入っている好きな可視化ビューアを使うことができる。
-```
-(Mac)$ sshfs username@crab-remote:[見たいディレクトリパス(研究室サーバ)] [マウントするディレクトリパス(Mac)]
-```
+    ```
+    (Mac)$ sshfs [username]@crab-remote:[見たいディレクトリパス(研究室サーバ)] [マウントするディレクトリパス(Mac)]
+    ```
+- 参考: [Qiita Macでsshfsを使ってローカルからリモートのファイルを触る](https://qiita.com/ysk24ok/items/bb148530a55a4e55d99b)
 
 ### 方法3: rsyncでファイルをコピー (大容量データにおすすめ)
 - rsyncはファイルを同期するコマンド
 - 一度rsyncしてしまえば、次からは差分を取ってくるだけで済むので大容量データに向いている
-```
-(Mac)$ rsync -auz -vv --stats --progress --exclude "*~" username@crab-remote:[コピー元ディレクトリパス(研究室サーバ)/] [コピー先ディレクトリパス(Mac)/]
-```
+- ディレクトリを同期する場合は、最後のスラッシュを忘れないようにする
+    ```
+    (Mac)$ rsync -auz -vv --stats --progress --exclude "*~" [username]@crab-remote:[コピー元ディレクトリパス(研究室サーバ)/] [コピー先ディレクトリパス(Mac)/]
+    ```
 
 ### 方法4: scpでファイルをコピー
 - scpはsshでファイルをコピーするコマンド
 - 基本の使い方はcpコマンドと一緒
 - 一度しか見ないようなデータは、rsyncではなくてこちらでもいいかも
-```
-(Mac)$ scp -rC username@crab-remote:[コピー元パス(研究室サーバ)] [コピー先パス(Mac)]
-```
+    ```
+    (Mac)$ scp -rC [username]@crab-remote:[コピー元パス(研究室サーバ)] [コピー先パス(Mac)]
+    ```
 
 ## MD実行時チェックリスト
 ### 毎回確認
 - 流す予定のnodeは空いているか？
-    - sinfoでnodeが生きているか確認
-    - ssh [node]→htopでCPU/メモリ確認
-    - ssh [node]→nvidia-smiでGPU/メモリ確認
+    - `sinfo`でnodeが生きているか確認
+    - `ssh [node]`→`htop`でCPU/メモリ確認
+    - `ssh [node]`→`nvidia-smi`でGPU/メモリ確認
 - 流す予定のGPU番号は空いているか？
-    - ssh [node]→nvidia-smiでGPU/メモリ確認
-    - export CUDA_VISIBLE_DEVICES="[ID]” で指定した番号が正しいか確認
+    - `ssh [node]`→`nvidia-smi`でGPU/メモリ確認
+    - `export CUDA_VISIBLE_DEVICES="[ID]”` でGPUを指定できる
 
 ### 新しいシステム作成時に確認
 - 塩濃度は正しいか？
@@ -131,4 +182,12 @@ mdconvert run.dcd -o run_stride10.dcd -s 10
 
 ### 途中から再開するときに確認
 - ログやトラジェクトリは上書きされないようにしたか？
+  - 以下をsbatchファイルに追加すると、ログファイルが追記モードになる
+    ```
+    #SBATCH --open-mode=append
+    ```
+  - OpenMMでdcdをappendモードにする
+    ```
+    simulation.reporters.append(DCDReporter(traj_fp, n_steps_save, append=True))
+    ```
 - 再開用のファイル(.chkや.rst)は指定したか？　　　　　　　　
