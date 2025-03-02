@@ -12,4 +12,4 @@
 - [MDシミュレーションのtips.md](MDシミュレーションのtips.md)
 - WIP 研究のワークフロー (ファイル構成, Git&GitHub, 進捗報告の仕方)
 - WIP 研究発表スライドの作り方
-
+- [AlphaFold3の実行方法](AlphaFold3.md)
