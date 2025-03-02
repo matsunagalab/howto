@@ -47,7 +47,7 @@ floydでAlphaFold3を実行します。以下のslurmジョブスクリプト `a
 #SBATCH -p all
 #SBATCH -J af3 # job name
 #SBATCH -n 1  # num of total mpi processes
-#SBATCH -c 32  # num of threads per mpi processes
+#SBATCH -c 8  # num of threads per mpi processes
 #SBATCH --mail-type=ALL
 #SBATCH -o %x_%j.log # %xにはjob名、%jにはjobIDが入る
 
