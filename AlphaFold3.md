@@ -23,9 +23,9 @@
 }
 ```
 
-または、fastaからjsonへコンバートするツールを使うことも出来ます。ここでは、floydにインストールした `fasta2json.py` を使います。
+または、fastaからjsonへコンバートするツールを使うこともできます。ここでは、floydにインストールした `fasta2json.py` を使います。
 
-FASTAを用意します。 `2pv7.fasta` とします。 `#2`はhomo-dimerを意味します。詳しくはツール元の https://github.com/snufoodbiochem/Alphafold3_tools?tab=readme-ov-file をご覧ください。
+FASTAを用意します。 `2pv7.fasta` とします。 `#2`はhomo-dimerを意味します。詳しくは [ツールの開発元](https://github.com/snufoodbiochem/Alphafold3_tools?tab=readme-ov-file) をご覧ください。
 
 ```
 >2PV7 #2
@@ -69,4 +69,10 @@ conda activate AF3
     --model_dir=${MODEL_DIR} \
     --json_path="2pv7.json" \
     --output_dir="."
+```
+
+ジョブを投入します。`--gres=gpu:a6000:1` はGPUをRTX A6000を1つ割り当てることを意味しますが、そもそもスクリプト内でGPUを手動で選んでいるのでここではあまり意味はありません（念のために付けているだけです）。
+
+```bash
+$ sbatch --gres=gpu:a6000:1 -w floyd run_af3test.sh
 ```
