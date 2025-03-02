@@ -6,7 +6,7 @@
 
 [AlphaFold3のリポジトリ](https://github.com/google-deepmind/alphafold3)に解説されているように、以下のようなJSONを用意します。 `2pv7.json` とします。
 
-```
+```json
 {
   "name": "2PV7",
   "sequences": [
@@ -27,14 +27,14 @@
 
 FASTAを用意します。 `2pv7.fasta` とします。 `#2`はhomo-dimerを意味します。詳しくは [ツールの開発元](https://github.com/snufoodbiochem/Alphafold3_tools?tab=readme-ov-file) をご覧ください。
 
-```
+```fasta
 >2PV7 #2
 GMRESYANENQFGFKTINSDIHKIVIVGGYGKLGGLFARYLRASGYPISILDREDWAVAESILANADVVIVSVPINLTLETIERLKPYLTENMLLADLTSVKREPLAKMLEVHTGAVLGLHPMFGADIASMAKQVVVRCDGRFPERYEWLLEQIQIWGAKIYQTNATEHDHNMTYIQALRHFSTFANGLHLSKQPINLANLLALSSPIYRLELAMIGRLFAQDAELYADIIMDKSENLAVIETLKQTYDEALTFFENNDRQGFIDAFHKVRDWFGDYSEQFLKESRQLLQQANDLKQG
 ```
 
 以下でjsonファイルへコンバートします。PATHは通っています。これで `2pv7.json` ができます。
 
-```
+```bash
 $ fasta2json.py input.fast
 ```
 
@@ -42,7 +42,7 @@ $ fasta2json.py input.fast
 
 floydでAlphaFold3を実行します。以下のslurmジョブスクリプト `run.sh` を作成してジョブを投入します。GPUはメモリが空いているものを選ばないとエラーが出ると思うので、 `CUDA_VISIBLE_DEVICES` を指定してマニュアルで選びます。
 
-```
+```bash
 #!/bin/bash
 #SBATCH -p all
 #SBATCH -J af3 # job name
