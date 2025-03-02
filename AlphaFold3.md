@@ -40,7 +40,7 @@ $ fasta2json.py 2pv7.fast
 
 ### AlphaFold3の実行
 
-floydでAlphaFold3を実行します。以下のslurmジョブスクリプト `af3.sh` を作成してジョブを投入します。GPUはメモリが空いているものを選ばないとエラーが出ると思うので、 `CUDA_VISIBLE_DEVICES` を指定してマニュアルで選びます。
+floydでAlphaFold3を実行します。以下のslurmジョブスクリプト `af3.sh` をjsonファイルと同じフォルダに作成してジョブを投入します。GPUはメモリが空いているものを選ばないとエラーが出ると思うので、 `CUDA_VISIBLE_DEVICES` を指定してマニュアルで選びます。
 
 ```bash
 #!/bin/bash
