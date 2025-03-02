@@ -4,7 +4,7 @@
 
 ### Input fileの準備
 
-以下のようなJSONを用意します。 `2pv7.json` とします。
+[AlphaFold3のリポジトリ](https://github.com/google-deepmind/alphafold3)に解説されているように、以下のようなJSONを用意します。 `2pv7.json` とします。
 
 ```
 {
