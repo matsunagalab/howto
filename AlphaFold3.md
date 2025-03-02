@@ -4,7 +4,7 @@
 
 ### Input fileの準備
 
-[AlphaFold3のリポジトリ](https://github.com/google-deepmind/alphafold3)に解説されているように、以下のようなJSONを用意します。 `2pv7.json` とします。
+[AlphaFold3のリポジトリ](https://github.com/google-deepmind/alphafold3)に解説されているように、以下のようなjsonファイルを用意します。 `2pv7.json` とします。
 
 ```json
 {
@@ -25,7 +25,7 @@
 
 または、fastaからjsonへコンバートするツールを使うこともできます。ここでは、floydにインストールした `fasta2json.py` を使います。
 
-FASTAを用意します。 `2pv7.fasta` とします。 `#2`はhomo-dimerを意味します。詳しくは [ツールの開発元](https://github.com/snufoodbiochem/Alphafold3_tools?tab=readme-ov-file) をご覧ください。
+fastaファイルを用意します。 `2pv7.fasta` とします。 `#2`はhomo-dimerを意味します。詳しくは [ツールの開発元](https://github.com/snufoodbiochem/Alphafold3_tools?tab=readme-ov-file) をご覧ください。
 
 ```fasta
 >2PV7 #2
