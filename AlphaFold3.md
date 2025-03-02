@@ -35,12 +35,12 @@ GMRESYANENQFGFKTINSDIHKIVIVGGYGKLGGLFARYLRASGYPISILDREDWAVAESILANADVVIVSVPINLTLE
 以下でjsonファイルへコンバートします。PATHは通っています。これで `2pv7.json` ができます。
 
 ```bash
-$ fasta2json.py input.fast
+$ fasta2json.py 2pv7.fast
 ```
 
 ### AlphaFold3の実行
 
-floydでAlphaFold3を実行します。以下のslurmジョブスクリプト `run.sh` を作成してジョブを投入します。GPUはメモリが空いているものを選ばないとエラーが出ると思うので、 `CUDA_VISIBLE_DEVICES` を指定してマニュアルで選びます。
+floydでAlphaFold3を実行します。以下のslurmジョブスクリプト `af3.sh` を作成してジョブを投入します。GPUはメモリが空いているものを選ばないとエラーが出ると思うので、 `CUDA_VISIBLE_DEVICES` を指定してマニュアルで選びます。
 
 ```bash
 #!/bin/bash
@@ -74,5 +74,5 @@ conda activate AF3
 ジョブを投入します。`--gres=gpu:a6000:1` はGPUをRTX A6000を1つ割り当てることを意味しますが、そもそもスクリプト内でGPUを手動で選んでいるのでここではあまり意味はありません（念のために付けているだけです）。
 
 ```bash
-$ sbatch --gres=gpu:a6000:1 -w floyd run_af3test.sh
+$ sbatch --gres=gpu:a6000:1 -w floyd af3.sh
 ```
