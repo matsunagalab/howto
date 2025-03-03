@@ -58,7 +58,7 @@ HMMER3_BINDIR="/opt/anaconda3/bin"    # HMMER3のバイナリディレクトリ
 DB_DIR="/alphafold/public_databases"  # 配列・構造データベースのディレクトリ
 MODEL_DIR="/opt/alphafold3/models"    # モデルパラメータのディレクトリ
 
-conda activate AF3
+source /opt/anaconda3/bin/activate AF3
 /opt/anaconda3/envs/AF3/bin/python ${ALPHAFOLD3DIR}/run_alphafold.py \
     --jackhmmer_binary_path="${HMMER3_BINDIR}/jackhmmer" \
     --nhmmer_binary_path="${HMMER3_BINDIR}/nhmmer" \
@@ -76,3 +76,12 @@ conda activate AF3
 ```bash
 $ sbatch --gres=gpu:a6000:1 -w floyd af3.sh
 ```
+
+たくさん配列をまとめて予測させたい場合は、ひとつのディレクトリにたくさんのjsonファイルをを作成して、 `--input_dir=<ディレクトリ名>` で指定すればよい。
+
+また、時間がかかるMSAを再利用してligand等だけいろいろと試したい場合は[以下](https://qiita.com/Ag_smith/items/3bb110fe576292bbf0ea#化合物を変えた予測を高速に実行させる)を参照のこと
+
+### 結果の可視化
+
+[以下](https://qiita.com/Ag_smith/items/3bb110fe576292bbf0ea#予測結果の解釈)を参照のこと
+
